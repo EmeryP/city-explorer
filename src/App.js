@@ -48,15 +48,15 @@ class App extends Component {
     return (
       <React.Fragment>
         <h1 id='titleTag'>City Explorer</h1>
-        <h3>Enter a location below to learn about the weather, events, restaurants, movies filmed there, and more!</h3>
+        <p>Enter a location below to learn about the weather, events, restaurants, movies filmed there, and more!</p>
         <form onSubmit={this.grabUrl}>
         <label>Search for a location</label>
           <input name='locationUrl' onChange={this.handleChange}/>
-          <button>Go</button>
+          <button>Explore</button>
         </form>
         <section>
-          <h2>Results</h2>
           <img id='map' src={this.state.MAPS_API} alt='Maps_image'/>
+          <h3>Here are your results for {this.state.locationUrl}</h3>
           
           {/* <ul> */}
             {/* {
