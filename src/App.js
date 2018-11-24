@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
 import './App.css';
 import superagent from 'superagent';
 
@@ -11,6 +10,7 @@ class App extends Component {
     // let locationUrl;
     this.state = {
       API_URL: `https://city-explorer-backend.herokuapp.com/location?data=`,
+      MAPS_API: '',
       locationUrl: '',
       latitude: 0,
       longitude: 0,
@@ -36,7 +36,9 @@ class App extends Component {
         latitude: results.body.latitude,
         longitude: results.body.longitude,
         records: results.body.results,
-        JSON: results.text
+        JSON: results.text,
+        MAPS_API: `https://maps.googleapis.com/maps/api/staticmap?center=${results.body.latitude}%2c%20${results.body.longitude}&zoom=13&size=600x300&maptype=roadmap%20%20&key=AIzaSyDp0Caae9rkHUHwERAFzs6WN4_MuphTimk`
+
         });
       })
       .catch(console.error);
@@ -45,22 +47,24 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
+        <h1 id='titleTag'>City Explorer</h1>
+        <h3>Enter a location below to learn about the weather, events, restaurants, movies filmed there, and more!</h3>
         <form onSubmit={this.grabUrl}>
+        <label>Search for a location</label>
           <input name='locationUrl' onChange={this.handleChange}/>
           <button>Go</button>
         </form>
         <section>
-          {this.state.JSON}
-        </section>
-        <section>
           <h2>Results</h2>
-          {/* { <ul>
-            {
+          <img id='map' src={this.state.MAPS_API} alt='Maps_image'/>
+          
+          {/* <ul> */}
+            {/* {
               this.state.records.map((record, index) => {
                 return <li key={index}>{record.name}</li>
               })
-            }
-          </ul> } */}
+            } */}
+          {/* </ul> */}
         </section>
       </React.Fragment>
     );
