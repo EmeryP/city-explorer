@@ -4,12 +4,16 @@ import './App.css';
 import superagent from 'superagent';
 
 class App extends Component {
+
   constructor(props){
     super(props);
-
+    
+    // let locationUrl;
     this.state = {
-      url: '',
-      count: 0,
+      API_URL: `https://city-explorer-backend.herokuapp.com/location?data=`,
+      locationUrl: '',
+      latitude: 0,
+      longitude: 0,
       records: [],
       JSON: ''
     }
@@ -26,10 +30,11 @@ class App extends Component {
 
   grabUrl = event => {
     event.preventDefault();
-    superagent('get', this.state.url)
+    superagent('get', `${this.state.API_URL}/${this.state.locationUrl}`)
       .then(results => {
         this.setState({
-        count: results.body.count,
+        latitude: results.body.latitude,
+        longitude: results.body.longitude,
         records: results.body.results,
         JSON: results.text
         });
@@ -41,7 +46,7 @@ class App extends Component {
     return (
       <React.Fragment>
         <form onSubmit={this.grabUrl}>
-          <input name='url' onChange={this.handleChange}/>
+          <input name='locationUrl' onChange={this.handleChange}/>
           <button>Go</button>
         </form>
         <section>
