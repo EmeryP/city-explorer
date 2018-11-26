@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.scss';
 import superagent from 'superagent';
 
 class App extends Component {
