@@ -122,7 +122,6 @@ class App extends Component {
   }
 
   render() {
-    // var classState = this.state.classNamed ? '.show' : '.hide';
     return (
       <React.Fragment>
         <header>
