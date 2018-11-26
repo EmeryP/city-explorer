@@ -2,7 +2,7 @@
 
 ### Links and Resources
 * [GitHub repo](https://github.com/EmeryP/city-explorer)
-* [deployed AWS site](http://xyz.com)
+* [AWS deployed site](http://city-explorer-emery.s3-website-us-east-1.amazonaws.com/)
 
 
 #### UML
