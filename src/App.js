@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import superagent from 'superagent';
-// import Api from './Api.js'
 
 class App extends Component {
 
@@ -17,6 +16,7 @@ class App extends Component {
       longitude: 0,
       JSON: '',
       formattedQuery: '',
+      className: 'hide',
       WEATHER_API: '',
       weatherLogs: [],
       YELP_API: '',
@@ -98,6 +98,7 @@ class App extends Component {
         longitude: results.body.longitude,
         JSON: results.text,
         formattedQuery: results.body.formatted_query,
+        className: 'show',
         MAPS_API: `https://maps.googleapis.com/maps/api/staticmap?center=${results.body.latitude}%2c%20${results.body.longitude}&zoom=13&size=600x300&maptype=roadmap%20%20&key=AIzaSyDp0Caae9rkHUHwERAFzs6WN4_MuphTimk`,
 
         WEATHER_API: `https://city-explorer-backend.herokuapp.com/weather?data%5Bid%5D=${results.body.id}&data%5Bsearch_query%5D=${results.body.search_query}&data%5Bformatted_query%5D=${results.body.formatted_query}&data%5Blatitude%5D=${results.body.latitude}&data%5Blongitude%5D=${results.body.longitude}&data%5Bcreated_at%5D=`,
@@ -121,18 +122,20 @@ class App extends Component {
   }
 
   render() {
+    // var classState = this.state.classNamed ? '.show' : '.hide';
     return (
       <React.Fragment>
+        <header>
         <h1 id='titleTag'>City Explorer</h1>
         <p>Enter a location below to learn about the weather, events, restaurants, movies filmed there, and more!</p>
-
+        </header>
         <form onSubmit={this.grabUrl}>
         <label>Search for a location</label>
           <input name='locationUrl' onChange={this.handleChange}/>
           <button>Explore</button>
         </form>
 
-        <section>
+        <section className={this.state.className}>
           <img id='map' src={this.state.MAPS_API} alt='Maps_image'/>
 
           <h3>Here are your results for {this.state.formattedQuery}</h3>
