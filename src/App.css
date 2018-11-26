@@ -80,3 +80,23 @@ p{
   margin-inline-start: 0px;
   margin-inline-end: 0px;
 }
+
+.column-container {
+  display: inline-block;
+  width: 20%;
+  border-style: groove;
+  margin: 5px;
+  background-color: #FFF;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  line-height: 1.5em;
+  text-indent: 5px;
+}
+
+li {
+  border-bottom: 2px solid #555;
+}
